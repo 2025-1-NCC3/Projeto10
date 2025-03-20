@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTitulo"
         android:layout_width="378dp"
         android:layout_height="69dp"
         android:layout_marginBottom="8dp"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.171" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textUberGirls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/uber_move_medium"
@@ -189,7 +189,7 @@
         app:layout_constraintVertical_bias="0.627" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/btnEscolha"
         android:layout_width="335dp"
         android:layout_height="51dp"
         android:backgroundTint="#000000"
