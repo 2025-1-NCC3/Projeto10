@@ -19,6 +19,7 @@ const db = new sqlite3.Database("banco.db", (err) => {
 db.serialize(() => {
   db.run(
     `CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
       senha TEXT NOT NULL,
       sexo TEXT NOT NULL CHECK (sexo IN ('feminino', 'masculino')),
