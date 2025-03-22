@@ -1,0 +1,164 @@
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const bodyParser = require("body-parser");
+
+const app = express();
+const port = 4000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const db = new sqlite3.Database("banco.db", (err) => {
+  if (err) {
+    console.error("❌ Erro ao conectar ao banco de dados:", err.message);
+  } else {
+    console.log("✅ Conectado ao banco de dados SQLite.");
+  }
+});
+
+db.serialize(() => {
+  db.run(
+    `CREATE TABLE IF NOT EXISTS users (
+      nome TEXT NOT NULL,
+      senha TEXT NOT NULL,
+      sexo TEXT NOT NULL CHECK (sexo IN ('feminino', 'masculino')),
+      aceita_motorista_mulher BOOLEAN DEFAULT 0
+  )`,
+    (err) => {
+      if (err) {
+        console.error("❌ Erro ao criar a tabela:", err.message);
+      } else {
+        console.log("✅ Tabela 'users' verificada/criada com sucesso.");
+      }
+    }
+  );
+});
+
+
+app.post("/user", (req, res) => {
+  const { nome, senha, sexo, aceita_motorista_mulher } = req.body;
+
+  
+  if (sexo !== "feminino" && sexo !== "masculino") {
+    return res
+      .status(400)
+      .json({ error: "Sexo inválido! Escolha 'feminino' ou 'masculino'." });
+  }
+
+  db.run(
+    `INSERT INTO users (nome, senha, sexo, aceita_motorista_mulher) VALUES (?, ?, ?, ?)`,
+    [nome, senha, sexo, aceita_motorista_mulher ? 1 : 0],
+    function (err) {
+      if (err) {
+        console.error("❌ Erro ao cadastrar usuário:", err.message);
+        res.status(500).json({ error: "Erro ao cadastrar usuário." });
+      } else {
+        
+        let telaDestino =
+          sexo === "feminino"
+            ? "tela_com_opcao_motorista_mulher"
+            : "tela_normal";
+
+        res.json({
+          message: "✅ Usuário cadastrado com sucesso!",
+          id: this.lastID,
+          tela: telaDestino,
+        });
+      }
+    }
+  );
+});
+
+app.get("/users", (req, res) => {
+  db.all("SELECT * FROM users", [], (err, rows) => {
+    if (err) {
+      console.error("❌ Erro ao buscar usuários:", err.message);
+      res.status(500).json({ error: "Erro ao buscar usuários." });
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+app.get("/user/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.get(`SELECT * FROM users WHERE id = ?`, [id], (err, row) => {
+    if (err) {
+      console.error("❌ Erro ao buscar usuário:", err.message);
+      res.status(500).json({ error: "Erro ao buscar usuário." });
+    } else if (!row) {
+      res.status(404).json({ error: "Usuário não encontrado." });
+    } else {
+      res.json(row);
+    }
+  });
+});
+
+app.put("/user/:id", (req, res) => {
+  const { id } = req.params;
+  const { aceita_motorista_mulher } = req.body;
+
+  db.run(
+    `UPDATE users SET aceita_motorista_mulher = ? WHERE id = ?`,
+    [aceita_motorista_mulher ? 1 : 0, id],
+    function (err) {
+      if (err) {
+        console.error("❌ Erro ao atualizar preferência:", err.message);
+        res.status(500).json({ error: "Erro ao atualizar preferência." });
+      } else {
+        res.json({ message: "✅ Preferência de motorista atualizada!" });
+      }
+    }
+  );
+});
+
+app.get("/motoristas_disponiveis", (req, res) => {
+  const { usuarioId } = req.query;
+
+  db.get(
+    `SELECT sexo, aceita_motorista_mulher FROM users WHERE id = ?`,
+    [usuarioId],
+    (err, user) => {
+      if (err) {
+        console.error("❌ Erro ao buscar usuário:", err.message);
+        return res.status(500).json({ error: "Erro ao buscar usuário." });
+      }
+
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado." });
+      }
+
+      let query = `SELECT * FROM motoristas`;
+      if (user.sexo === "feminino" && user.aceita_motorista_mulher) {
+        query += ` WHERE sexo = 'feminino'`;
+      }
+
+      db.all(query, [], (err, motoristas) => {
+        if (err) {
+          console.error("❌ Erro ao buscar motoristas:", err.message);
+          res.status(500).json({ error: "Erro ao buscar motoristas." });
+        } else {
+          res.json(motoristas);
+        }
+      });
+    }
+  );
+});
+
+app.delete("/user/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.run(`DELETE FROM users WHERE id = ?`, [id], function (err) {
+    if (err) {
+      console.error("❌ Erro ao excluir usuário:", err.message);
+      res.status(500).json({ error: "Erro ao excluir usuário." });
+    } else {
+      res.json({ message: "✅ Usuário deletado com sucesso!" });
+    }
+  });
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
