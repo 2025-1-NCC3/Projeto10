@@ -24,7 +24,7 @@
         android:id="@+id/btnSheet"
         android:layout_width="412dp"
         android:layout_height="620dp"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="272dp"
         android:backgroundTint="#FFFFFF"
         android:text="."
         app:cornerRadius="25dp"
