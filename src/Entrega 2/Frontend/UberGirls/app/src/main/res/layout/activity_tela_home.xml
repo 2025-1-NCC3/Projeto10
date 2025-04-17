@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <!-- Topo com abas -->
+
     <LinearLayout
         android:id="@+id/topTabs"
         android:layout_width="match_parent"
@@ -183,9 +183,7 @@
 
     </LinearLayout>
 
-    <!-- Ícones das sugestões -->
 
-    <!-- Bottom Navigation -->
 
     <LinearLayout
         android:id="@+id/sugestoesTitulo"
@@ -211,7 +209,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/locaisRecentes">
 
-        <!-- Título -->
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -231,7 +229,7 @@
             android:textColor="#000000"
             android:textSize="14sp" />
 
-        <!-- Ícones com labels em linha -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -239,7 +237,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Item 1 - Viagem -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -259,7 +257,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Item 2 - Envios -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -279,7 +277,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Item 3 - Agende -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -299,7 +297,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Item 4 - Reserve -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -320,7 +318,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Botão Ver Tudo -->
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
