@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#F6F9F4"
     tools:context=".MainActivity"
     android:padding="16dp">
 

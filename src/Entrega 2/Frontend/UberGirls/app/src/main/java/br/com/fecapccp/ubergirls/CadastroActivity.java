@@ -1,4 +1,4 @@
-package com.example.ubergirls;
+package br.com.fecapccp.ubergirls;
 
 
 import android.content.Intent;
@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import br.com.fecapccp.ubergirls.R;
 
 public class CadastroActivity extends AppCompatActivity {
 

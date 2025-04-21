@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,10 +17,14 @@
         android:theme="@style/Theme.UberGirls"
         tools:targetApi="31">
         <activity
-            android:name=".tela_home"
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CadastroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".UberGirlsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
