@@ -10,10 +10,10 @@ app.use(express.json());
 
 const connection = mysql.createConnection({
   host: "ubergirlsmysqlgrupo10.mysql.database.azure.com",
-  user: "admingrupo10",
+  user: "admingrupo10@ubergirlsmysqlgrupo10",
   password: "Grupo10@",
   database: "ubergirlsdb",
-  ssl: { rejectUnauthorized: true }
+  ssl: { rejectUnauthorized: false }
 });
 
 connection.connect(err => {
