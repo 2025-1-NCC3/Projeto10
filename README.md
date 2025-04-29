@@ -17,6 +17,10 @@
 
 # Descrição
 
+<p align="center">
+<img src="https://i.postimg.cc/sXPcDF8w/Logo.png" alt="Uber Girls" border="0">
+</p>
+
 O Uber Girls é um aplicativo de mobilidade urbana focado na segurança de passageiras. Ele oferece duas funcionalidades principais:
 
 🚺 Corrida exclusiva para mulheres: Passageiras podem escolher motoristas mulheres, aumentando a segurança e o conforto.
@@ -83,9 +87,21 @@ documentos: Toda a documentação estará nesta pasta.
 
 ## 🛠 Instalação
 
+## 🛠 Instalação
+
+<!-- <b>Android:</b>
+
+Faça o download do `.apk` no seu celular.  
+Execute o APK e siga as instruções do seu telefone.
+
+```sh
+👉 https://drive.google.com/file/d/1bkihqnxqIufaPpMa7MAgd4ur1ZwaNbFb/view?usp=sharing
+```
+-->
+
 <b>Android:</b>
 
-Faça o Download do .apk no seu celular.
+Faça o Download do `.apk` no seu celular.
 Execute o APK e siga as instruções de seu telefone.
 
 ```sh
