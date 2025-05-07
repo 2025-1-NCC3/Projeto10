@@ -20,18 +20,20 @@
 
     <TextView
         android:id="@+id/textTitulo"
-        android:layout_width="378dp"
-        android:layout_height="69dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Comece a usar o app da Uber"
         android:textSize="27sp"
         android:textStyle="bold"
         android:fontFamily="@font/uber_move_medium"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.171"
-        app:layout_constraintHorizontal_bias="0.424" />
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <TextView
         android:id="@+id/textUberGirls"
@@ -50,7 +52,7 @@
 
     <EditText
         android:id="@+id/inputNome"
-        android:layout_width="344dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
         android:hint="Nome Completo"
         android:textSize="20sp"
@@ -59,15 +61,16 @@
         android:background="@drawable/rounded_input"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintVertical_bias="0.313"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.313" />
 
     <EditText
         android:id="@+id/inputTelefone"
-        android:layout_width="346dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
         android:hint="Número de telefone"
         android:textSize="20sp"
@@ -76,6 +79,7 @@
         android:background="@drawable/rounded_input"
         android:textColor="#000000"
         android:textColorHint="#000000"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintVertical_bias="0.389"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +88,7 @@
 
     <EditText
         android:id="@+id/inputEmail"
-        android:layout_width="346dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:hint="Email"
         android:textSize="20sp"
@@ -93,6 +97,7 @@
         android:background="@drawable/rounded_input"
         android:textColor="#000000"
         android:textColorHint="#000000"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintVertical_bias="0.468"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +106,7 @@
 
     <EditText
         android:id="@+id/inputCPF"
-        android:layout_width="345dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:background="@drawable/rounded_input"
         android:fontFamily="@font/uber_move_medium"
@@ -110,6 +115,7 @@
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:textSize="20sp"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +124,7 @@
 
     <EditText
         android:id="@+id/inputSexo"
-        android:layout_width="345dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:hint="Sexo"
         android:textSize="20sp"
@@ -127,6 +133,7 @@
         android:background="@drawable/rounded_input"
         android:textColor="#000000"
         android:textColorHint="#000000"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintVertical_bias="0.622"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +142,7 @@
 
     <EditText
         android:id="@+id/inputSenha"
-        android:layout_width="346dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:hint="Senha"
         android:textSize="20sp"
@@ -145,6 +152,7 @@
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:inputType="textPassword"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintVertical_bias="0.702"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,32 +176,32 @@
         app:layout_constraintHorizontal_bias="0.469" />
 
     <LinearLayout
-        android:layout_width="162dp"
+        android:layout_width="0dp"
         android:layout_height="4dp"
         android:background="#CBCFCD"
         android:orientation="horizontal"
+        app:layout_constraintWidth_percent="0.35"
         app:layout_constraintVertical_bias="0.832"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textOu"
-        app:layout_constraintHorizontal_bias="0.063" />
+        app:layout_constraintEnd_toStartOf="@id/textOu"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="4dp"
         android:background="#CBCFCD"
         android:orientation="horizontal"
+        app:layout_constraintWidth_percent="0.35"
         app:layout_constraintVertical_bias="0.832"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93" />
+        app:layout_constraintStart_toEndOf="@id/textOu"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnEscolha"
-        android:layout_width="335dp"
+        android:layout_width="0dp"
         android:layout_height="51dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/uber_move_medium"
@@ -202,6 +210,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:cornerRadius="11dp"
+        app:layout_constraintWidth_percent="0.87"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -210,23 +219,22 @@
 
     <Button
         android:id="@+id/buttonGoogle"
-        android:layout_width="382dp"
+        android:layout_width="0dp"
         android:layout_height="65dp"
         android:text="Continuar com o Google"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:iconTint="@null"
         android:textColor="#000000"
         android:backgroundTint="#CBCFCD"
         android:fontFamily="@font/uber_move_medium"
         app:cornerRadius="11dp"
         app:icon="@drawable/google_icon"
+        app:iconTint="@null"
+        app:layout_constraintWidth_percent="0.95"
         app:layout_constraintVertical_bias="0.945"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344" />
+        app:layout_constraintHorizontal_bias="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
