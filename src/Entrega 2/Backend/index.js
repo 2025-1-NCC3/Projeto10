@@ -10,10 +10,10 @@ app.use(express.json());
 
 const connection = mysql.createConnection({
   host: "ubergirlsmysqlgrupo10.mysql.database.azure.com",
-  user: "admingrupo10",
+  user: "admingrupo10@ubergirlsmysqlgrupo10",
   password: "Grupo10@",
   database: "ubergirlsdb",
-  ssl: { rejectUnauthorized: true }
+  ssl: { rejectUnauthorized: false }
 });
 
 connection.connect(err => {
@@ -34,10 +34,11 @@ app.get("/usuarios", (req, res) => {
 });
 
 app.post("/cadastro", async (req, res) => {
-  const { nome, senha, sexo, aceita_motorista_mulher } = req.body;
+  const { nome, telefone, email, cpf, senha, sexo, aceita_motorista_mulher } = req.body;
 
-  if (!nome || !senha || !sexo) {
-    return res.status(400).json({ error: "Nome, senha e sexo são obrigatórios." });
+
+  if (!nome || !telefone || !email || !cpf || !senha || !sexo) {
+    return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
 
@@ -49,8 +50,12 @@ app.post("/cadastro", async (req, res) => {
 
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);
-    const query = "INSERT INTO users (nome, senha, sexo, aceita_motorista_mulher) VALUES (?, ?, ?, ?)";
-    const values = [nome, senhaCriptografada, sexo, aceita_motorista_mulher];
+
+    const query = `
+      INSERT INTO users (nome, telefone, email, cpf, senha, sexo, aceita_motorista_mulher)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [nome, telefone, email, cpf, senhaCriptografada, sexo, aceita_motorista_mulher];
 
     connection.query(query, values, (err, results) => {
       if (err) {
@@ -62,6 +67,7 @@ app.post("/cadastro", async (req, res) => {
     res.status(500).json({ error: "Erro interno ao criptografar senha" });
   }
 });
+
 
 app.post("/login", (req, res) => {
   const { nome, senha } = req.body;

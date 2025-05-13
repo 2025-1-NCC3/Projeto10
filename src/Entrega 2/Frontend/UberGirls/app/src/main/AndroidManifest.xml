@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,22 +18,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UberGirls"
         tools:targetApi="31">
+
+
         <activity
-            android:name=".tela_home"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".CadastroActivity" android:exported="false" />
+        <activity android:name=".UberGirlsActivity" android:exported="false" />
+        <activity android:name=".TelaHomeActivity" android:exported="false" />
+        <activity android:name=".PesquisaActivity" android:exported="false"
+            tools:ignore="MissingClass" />
+        <activity android:name=".EscolhaRota" android:exported="false" />
+        <activity android:name=".ItemLocalActivity" android:exported="false" />
+
+
+        <!-- API do Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6OQbHAg8n3-qHusRR-KCv6Ii1CiYhjVI" />
+
     </application>
 
 </manifest>
