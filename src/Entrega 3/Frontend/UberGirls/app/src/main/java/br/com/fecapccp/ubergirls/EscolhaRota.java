@@ -42,6 +42,10 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
     private Button btnConfirmarPartida;
     private CardView cardMelhorRota;
 
+    // Armazena origem e destino para uso posterior
+    private LatLng origem;
+    private LatLng destino;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +98,8 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
 
         // Exemplo de coordenadas para São Paulo (baseado na imagem)
         // Estas coordenadas são aproximadas e devem ser substituídas pelas reais
-        LatLng origem = new LatLng(-23.5505, -46.6333);  // Centro de São Paulo
-        LatLng destino = new LatLng(-23.5905, -46.6933); // Exemplo de destino
+        origem = new LatLng(-23.5505, -46.6333);  // Centro de São Paulo
+        destino = new LatLng(-23.5905, -46.6933); // Exemplo de destino
 
         // Adicionar marcadores para origem e destino
         mMap.addMarker(new MarkerOptions()
@@ -111,12 +115,22 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
         // Desenhar as três rotas alternativas
         desenharRotas(origem, destino);
 
-        // Ajustar câmera para mostrar toda a rota
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        builder.include(origem);
-        builder.include(destino);
-        LatLngBounds bounds = builder.build();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+        // Solução 1: Usar o método que permite especificar as dimensões do mapa
+        final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        if (mapView != null && mapView.getViewTreeObserver() != null) {
+            mapView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                // Ajustar câmera para mostrar toda a rota
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(origem);
+                builder.include(destino);
+                LatLngBounds bounds = builder.build();
+
+                // Use o segundo método que permite especificar as dimensões
+                // Ou use esta versão alternativa com padding:
+                int padding = 100; // padding em pixels
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+            });
+        }
     }
 
     private void desenharRotas(LatLng origem, LatLng destino) {

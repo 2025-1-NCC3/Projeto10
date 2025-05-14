@@ -21,7 +21,7 @@
 
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".EscolhaRota"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
         <activity android:name=".TelaHomeActivity" android:exported="false" />
         <activity android:name=".PesquisaActivity" android:exported="false"
             tools:ignore="MissingClass" />
-        <activity android:name=".EscolhaRota" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".ItemLocalActivity" android:exported="false" />
 
 

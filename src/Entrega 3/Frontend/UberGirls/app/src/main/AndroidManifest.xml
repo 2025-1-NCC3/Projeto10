@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_selecao_rota"
+            android:name=".EscolhaRota"
             android:exported="false" />
         <activity
             android:name=".CadastroActivity"

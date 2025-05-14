@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,26 +67,30 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selecao_rota);
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_selecao_rota);
 
-        Log.d(TAG, "Iniciando RotaSegura Activity");
+            Log.d(TAG, "Iniciando RotaSegura Activity");
 
+            inicializarUI();
 
-        inicializarUI();
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            if (mapFragment != null) {
+                mapFragment.getMapAsync(this);
+                Log.d(TAG, "Requisitando carregamento do mapa");
+            } else {
+                Log.e(TAG, "MapFragment não encontrado!");
+            }
 
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
-            Log.d(TAG, "Requisitando carregamento do mapa");
-        } else {
-            Log.e(TAG, "MapFragment não encontrado!");
+            configurarListeners();
+        } catch (Exception e) {
+            Log.e(TAG, "Erro ao iniciar activity: " + e.getMessage());
+            e.printStackTrace();
+            // Optional: Show a toast message
+            Toast.makeText(this, "Erro ao iniciar: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
-
-        configurarListeners();
     }
 
     // Textos de informações das rotas
@@ -182,7 +187,6 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
-
         try {
             Intent intent = getIntent();
             if (intent != null) {
@@ -196,7 +200,6 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
 
                 Log.d(TAG, "Coordenadas recebidas - Origem: " + origem + " - Destino: " + destino);
             } else {
-
                 origem = new LatLng(-23.5505, -46.6333);
                 destino = new LatLng(-23.5632, -46.6546);
                 Log.d(TAG, "Usando coordenadas padrão");
@@ -207,25 +210,23 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
             destino = new LatLng(-23.5632, -46.6546);
         }
 
-
         adicionarMarcadores();
-
         gerarRotasSimuladas();
-
-
         desenharRotas();
-
-
         selecionarRota(0);
         destacarCardSelecionado(cardRota1);
 
-
-        centralizarMapa();
-
+        // Ajustamos a visualização do mapa após um pequeno delay para garantir que ele esteja renderizado
+        final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        mapView.post(new Runnable() {
+            @Override
+            public void run() {
+                centralizarMapa();
+            }
+        });
 
         atualizarInformacoesRotas();
     }
-
     private void adicionarMarcadores() {
         if (mMap == null) return;
 
@@ -393,11 +394,10 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
     private void centralizarMapa() {
         if (mMap == null || origem == null || destino == null) return;
 
-
+        // Construir os limites
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(origem);
         builder.include(destino);
-
 
         for (List<LatLng> pontos : rotasPontos) {
             for (LatLng ponto : pontos) {
@@ -405,18 +405,27 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
             }
         }
 
+        final LatLngBounds bounds = builder.build();
+        final int padding = (int) (80 * getResources().getDisplayMetrics().density);
 
-        LatLngBounds bounds = builder.build();
-
-
-        int padding = (int) (80 * getResources().getDisplayMetrics().density);
-
-
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+        // Adicionar um delay para garantir que o mapa tenha tamanho
+        final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        if (mapView.getWidth() > 0) {
+            // Se o mapa já tem tamanho, podemos ajustar imediatamente
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+        } else {
+            // Caso contrário, esperamos o layout ser calculado
+            mapView.post(new Runnable() {
+                @Override
+                public void run() {
+                    // Este código será executado após o layout ser calculado
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+                }
+            });
+        }
 
         Log.d(TAG, "Mapa centralizado para mostrar todas as rotas");
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
