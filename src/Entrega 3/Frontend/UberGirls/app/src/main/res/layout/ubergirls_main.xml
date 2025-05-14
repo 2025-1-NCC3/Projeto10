@@ -15,21 +15,17 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <View
         android:id="@+id/baseSheet"
-        android:layout_width="412dp"
-        android:layout_height="620dp"
-        android:layout_marginTop="272dp"
+        android:layout_width="wrap_content"
+        android:layout_height="633dp"
         android:background="@drawable/bg_top_rounded"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/btnVoltar"
@@ -46,18 +42,18 @@
 
     <TextView
         android:id="@+id/textTitulo"
-        android:layout_width="222dp"
-        android:layout_height="26dp"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="Escolher uma viagem"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintTop_toTopOf="@+id/baseSheet" />
 
     <ImageView
         android:id="@+id/imgRetangulo"
@@ -67,119 +63,115 @@
         android:layout_alignParentTop="true"
         app:layout_constraintBottom_toBottomOf="@+id/baseSheet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintTop_toTopOf="@+id/baseSheet"
+        app:layout_constraintVertical_bias="0.134"
         app:srcCompat="@drawable/retangulo" />
 
     <ImageView
         android:id="@+id/imgUberGirls"
         android:layout_width="116.15dp"
         android:layout_height="62.62dp"
-        app:layout_constraintBottom_toBottomOf="@+id/baseSheet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imgRetangulo"
+        app:layout_constraintStart_toStartOf="@+id/imgRetangulo"
+        app:layout_constraintTop_toTopOf="@+id/imgRetangulo"
         app:srcCompat="@drawable/carro_girls" />
 
     <TextView
         android:id="@+id/textUberGirls"
-        android:layout_width="380.22dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="UberGirls"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintEnd_toEndOf="@+id/imgRetangulo"
+        app:layout_constraintStart_toStartOf="@+id/imgRetangulo"
+        app:layout_constraintTop_toBottomOf="@+id/imgUberGirls" />
 
     <ImageView
         android:id="@+id/imgUberX"
         android:layout_width="76dp"
         android:layout_height="44.88dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintTop_toBottomOf="@+id/imgRetangulo"
         app:srcCompat="@drawable/carro_x" />
 
     <TextView
         android:id="@+id/textUberX"
-        android:layout_width="96dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="UberX"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.682" />
+        app:layout_constraintStart_toEndOf="@+id/imgUberX"
+        app:layout_constraintTop_toBottomOf="@+id/imgRetangulo" />
 
     <ImageView
         android:id="@+id/imgComfort"
         android:layout_width="76dp"
         android:layout_height="44.88dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintTop_toBottomOf="@+id/imgUberX"
         app:srcCompat="@drawable/carro_comfort" />
 
     <TextView
         android:id="@+id/textComfort"
-        android:layout_width="132dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="Uber Comfort"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgComfort"
+        app:layout_constraintTop_toBottomOf="@+id/textUberX"
         app:layout_constraintVertical_bias="0.78" />
 
     <ImageView
         android:id="@+id/imgPix"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnEscolha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintTop_toBottomOf="@+id/imgComfort"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/pix" />
 
     <TextView
         android:id="@+id/textPix"
         android:layout_width="42dp"
         android:layout_height="27dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/uber_move_bold"
         android:gravity="top"
         android:text="PIX"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintBottom_toTopOf="@+id/btnEscolha"
+        app:layout_constraintStart_toEndOf="@+id/imgPix"
+        app:layout_constraintTop_toBottomOf="@+id/imgComfort"
+        app:layout_constraintVertical_bias="0.987" />
 
     <ImageView
         android:id="@+id/btnSeta"
@@ -187,30 +179,33 @@
         android:layout_height="24dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEscolha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toEndOf="@+id/textPix"
+        app:layout_constraintTop_toBottomOf="@+id/imgComfort"
+        app:layout_constraintVertical_bias="0.987"
         app:srcCompat="@drawable/seta" />
 
     <Button
         android:id="@+id/btnEscolha"
-        android:layout_width="362.69dp"
-        android:layout_height="56.36dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/uber_move_medium"
-        android:text="Escolha UberGirls"
-        android:textSize="22sp"
+        android:text="Escolha Uber Girls"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/baseSheet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
