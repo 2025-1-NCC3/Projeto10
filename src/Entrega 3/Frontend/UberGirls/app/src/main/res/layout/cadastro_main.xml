@@ -122,17 +122,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.547" />
 
-    <EditText
-        android:id="@+id/inputSexo"
+    <TextView
+        android:id="@+id/textViewSexo"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:hint="Sexo"
+        android:text="Sexo"
         android:textSize="20sp"
         android:gravity="center"
         android:fontFamily="@font/uber_move_medium"
         android:background="@drawable/rounded_input"
         android:textColor="#000000"
-        android:textColorHint="#000000"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintVertical_bias="0.622"
         app:layout_constraintTop_toTopOf="parent"
@@ -237,4 +238,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5" />
+
+    <!-- Spinner oculto usado apenas para gerenciar a seleção -->
+    <Spinner
+        android:id="@+id/spinnerSexo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
