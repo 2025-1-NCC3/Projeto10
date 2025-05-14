@@ -87,8 +87,6 @@ documentos: Toda a documentação estará nesta pasta.
 
 ## 🛠 Instalação
 
-## 🛠 Instalação
-
 <!-- <b>Android:</b>
 
 Faça o download do `.apk` no seu celular.  
