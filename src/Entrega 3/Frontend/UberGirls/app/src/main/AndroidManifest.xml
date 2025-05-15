@@ -27,7 +27,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".UberGirlsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +49,7 @@
             android:exported="false"
             tools:ignore="MissingClass" />
         <activity
-            android:name=".UberGirlsActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ItemLocalActivity"

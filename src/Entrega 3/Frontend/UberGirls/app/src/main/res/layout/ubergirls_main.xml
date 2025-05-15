@@ -31,13 +31,11 @@
         android:id="@+id/btnVoltar"
         android:layout_width="51.5dp"
         android:layout_height="49.05dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019"
         app:srcCompat="@drawable/btnvoltar" />
 
     <TextView
@@ -201,7 +199,6 @@
         android:text="Escolha Uber Girls"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        android:textStyle="bold"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/baseSheet"
         app:layout_constraintEnd_toEndOf="parent"

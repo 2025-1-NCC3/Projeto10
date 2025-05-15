@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/btnVoltar"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
+                android:layout_width="51.5dp"
+                android:layout_height="49.05dp"
                 android:src="@drawable/btnvoltar" />
 
             <TextView
@@ -203,10 +203,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Concluído"
             android:textAllCaps="false"
-            android:backgroundTint="#006341"
+            android:backgroundTint="#000000"
+            android:fontFamily="@font/uber_move_medium"
+            android:text="Concluído"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="25sp"
+            />
     </LinearLayout>
 </ScrollView>

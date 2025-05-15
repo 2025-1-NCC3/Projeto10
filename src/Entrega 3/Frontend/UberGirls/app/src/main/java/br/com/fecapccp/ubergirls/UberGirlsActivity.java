@@ -1,6 +1,7 @@
 package br.com.fecapccp.ubergirls;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     private ImageView imgUberGirls, imgUberX, imgComfort;
     private TextView textUberGirls, textUberX, textComfort;
     private Button btnEscolha;
+    private ImageView btnVoltar;
 
     private String opcaoSelecionada = "UberGirls";
 
@@ -62,14 +64,15 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         imgUberGirls = findViewById(R.id.imgUberGirls);
-        imgUberX = findViewById(R.id.imgUberX);
-        imgComfort = findViewById(R.id.imgComfort);
+        imgUberX      = findViewById(R.id.imgUberX);
+        imgComfort    = findViewById(R.id.imgComfort);
 
         textUberGirls = findViewById(R.id.textUberGirls);
-        textUberX = findViewById(R.id.textUberX);
-        textComfort = findViewById(R.id.textComfort);
+        textUberX      = findViewById(R.id.textUberX);
+        textComfort    = findViewById(R.id.textComfort);
 
         btnEscolha = findViewById(R.id.btnEscolha);
+        btnVoltar  = findViewById(R.id.btnVoltar);
 
         imgUberX.setOnClickListener(v -> trocarComPrincipal(imgUberX, textUberX));
         textUberX.setOnClickListener(v -> trocarComPrincipal(imgUberX, textUberX));
@@ -78,6 +81,18 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         textComfort.setOnClickListener(v -> trocarComPrincipal(imgComfort, textComfort));
 
         atualizarBotao();
+
+        // Navega para EscolhaRota
+        btnEscolha.setOnClickListener(v -> {
+            Intent intent = new Intent(UberGirlsActivity.this, EscolhaRota.class);
+            startActivity(intent);
+        });
+
+        // Navega para PesquisaMainActivity
+        btnVoltar.setOnClickListener(v -> {
+            Intent intent = new Intent(UberGirlsActivity.this, PesquisaActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -135,13 +150,13 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     private void trocarComPrincipal(ImageView imagemSecundaria, TextView textoSecundario) {
         if (textoSecundario.getText().equals(textUberGirls.getText())) return;
 
-        CharSequence textoPrincipal = textUberGirls.getText();
+        CharSequence textoPrincipal        = textUberGirls.getText();
         CharSequence textoSecundarioAtual = textoSecundario.getText();
 
         textUberGirls.setText(textoSecundarioAtual);
         textoSecundario.setText(textoPrincipal);
 
-        int imgPrincipalId = getImagemPorTexto(textoPrincipal.toString());
+        int imgPrincipalId   = getImagemPorTexto(textoPrincipal.toString());
         int imgSecundariaId = getImagemPorTexto(textoSecundarioAtual.toString());
 
         imgUberGirls.setImageResource(imgSecundariaId);

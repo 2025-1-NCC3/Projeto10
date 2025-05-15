@@ -40,14 +40,17 @@ public class PesquisaActivity extends AppCompatActivity {
         }
 
         // Referências
-        editOrigem = findViewById(R.id.editOrigem);
-        editDestino = findViewById(R.id.editDestino);
-        btnVoltar = findViewById(R.id.btnVoltar);
-        btnSeta = findViewById(R.id.btnSeta);
-        btnConcluido = findViewById(R.id.btnConcluido);
+        editOrigem    = findViewById(R.id.editOrigem);
+        editDestino   = findViewById(R.id.editDestino);
+        btnVoltar     = findViewById(R.id.btnVoltar);
+        btnSeta       = findViewById(R.id.btnSeta);
+        btnConcluido  = findViewById(R.id.btnConcluido);
 
-        // Voltar para a tela anterior
-        btnVoltar.setOnClickListener(view -> finish());
+        // Navega para TelaHomeActivity
+        btnVoltar.setOnClickListener(view -> {
+            Intent intent = new Intent(PesquisaActivity.this, TelaHomeActivity.class);
+            startActivity(intent);
+        });
 
         // Clique no campo de destino (abre o autocomplete)
         editDestino.setOnClickListener(view -> {
@@ -58,7 +61,8 @@ public class PesquisaActivity extends AppCompatActivity {
                     Place.Field.LAT_LNG
             );
 
-            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, campos)
+            Intent intent = new Autocomplete.IntentBuilder(
+                    AutocompleteActivityMode.OVERLAY, campos)
                     .build(PesquisaActivity.this);
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
         });
@@ -85,13 +89,15 @@ public class PesquisaActivity extends AppCompatActivity {
                 intent.putExtra("endereco", enderecoSelecionado);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Selecione um endereço no campo 'Para onde?'", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Selecione um endereço no campo 'Para onde?'",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
@@ -100,7 +106,8 @@ public class PesquisaActivity extends AppCompatActivity {
                 enderecoSelecionado = place.getAddress();
                 editDestino.setText(enderecoSelecionado);
             } else {
-                Toast.makeText(this, "Nenhum endereço selecionado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nenhum endereço selecionado",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
