@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +28,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -35,10 +41,25 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     private Button btnEscolha;
     private ImageView btnVoltar;
 
+    // referências dos TextView de horário
+    private TextView textTempoPrincipal;
+    private TextView textTempoSec;
+    private TextView textTempoTer;
+
     private String opcaoSelecionada = "UberGirls";
 
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    // atualiza horário a cada minuto
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Runnable atualizarHorarioRunnable = new Runnable() {
+        @Override
+        public void run() {
+            atualizarHorarios();
+            handler.postDelayed(this, 120_000);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +73,6 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             return insets;
         });
 
-        // Inicializa o mapa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -71,6 +91,11 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         textUberX      = findViewById(R.id.textUberX);
         textComfort    = findViewById(R.id.textComfort);
 
+        // encontra os TextView de horário
+        textTempoPrincipal = findViewById(R.id.textTempoPrincipal);
+        textTempoSec       = findViewById(R.id.textTempoSec);
+        textTempoTer       = findViewById(R.id.textTempoTer);
+
         btnEscolha = findViewById(R.id.btnEscolha);
         btnVoltar  = findViewById(R.id.btnVoltar);
 
@@ -82,17 +107,27 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
         atualizarBotao();
 
-        // Navega para EscolhaRota
         btnEscolha.setOnClickListener(v -> {
             Intent intent = new Intent(UberGirlsActivity.this, EscolhaRota.class);
             startActivity(intent);
         });
 
-        // Navega para PesquisaMainActivity
         btnVoltar.setOnClickListener(v -> {
             Intent intent = new Intent(UberGirlsActivity.this, PesquisaActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.post(atualizarHorarioRunnable);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(atualizarHorarioRunnable);
     }
 
     @Override
@@ -102,7 +137,6 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d("MAP_DEBUG", "Mapa carregado com sucesso!");
         mMap.setTrafficEnabled(true);
 
-        // Verifica permissão de localização
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -113,7 +147,6 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    // Ativa o botão azul de localização e centraliza o mapa
     private void ativarLocalizacao() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -132,21 +165,18 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    // Recebe o resultado da permissão
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                ativarLocalizacao();
-            } else {
-                Log.e("MAP_DEBUG", "Permissão de localização negada.");
-            }
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE &&
+                grantResults.length > 0 &&
+                grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            ativarLocalizacao();
+        } else {
+            Log.e("MAP_DEBUG", "Permissão de localização negada.");
         }
     }
 
-    // Troca a imagem/texto principal com a opção clicada
     private void trocarComPrincipal(ImageView imagemSecundaria, TextView textoSecundario) {
         if (textoSecundario.getText().equals(textUberGirls.getText())) return;
 
@@ -166,12 +196,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         atualizarBotao();
     }
 
-    // Atualiza o botão inferior com o nome da opção atual
     private void atualizarBotao() {
         btnEscolha.setText("Escolha " + opcaoSelecionada);
     }
 
-    // Retorna o drawable correspondente ao nome da opção
     private int getImagemPorTexto(String nome) {
         switch (nome) {
             case "UberGirls":
@@ -183,5 +211,16 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             default:
                 return R.drawable.carro_girls;
         }
+    }
+
+    // formata e atualiza o horário nos três TextView
+    private void atualizarHorarios() {
+        String hora = new SimpleDateFormat("HH:mm", Locale.getDefault())
+                .format(new Date());
+        String sufixo = " - 3 min de distância";
+
+        textTempoPrincipal.setText(hora + sufixo);
+        textTempoSec.setText(hora + sufixo);
+        textTempoTer.setText(hora + sufixo);
     }
 }

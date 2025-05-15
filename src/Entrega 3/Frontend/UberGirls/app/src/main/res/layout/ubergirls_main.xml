@@ -15,14 +15,15 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/baseSheet"
         android:layout_width="wrap_content"
-        android:layout_height="633dp"
+        android:layout_height="600dp"
         android:background="@drawable/bg_top_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -43,7 +44,7 @@
         android:layout_width="216dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="Escolher uma viagem"
@@ -59,19 +60,19 @@
         android:layout_height="175.34dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        app:layout_constraintBottom_toBottomOf="@+id/baseSheet"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/baseSheet"
-        app:layout_constraintVertical_bias="0.134"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo"
         app:srcCompat="@drawable/retangulo" />
 
     <ImageView
         android:id="@+id/imgUberGirls"
         android:layout_width="116.15dp"
         android:layout_height="62.62dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="@+id/imgRetangulo"
@@ -83,7 +84,7 @@
         android:id="@+id/textUberGirls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/uber_move_bold"
@@ -94,11 +95,25 @@
         app:layout_constraintStart_toStartOf="@+id/imgRetangulo"
         app:layout_constraintTop_toBottomOf="@+id/imgUberGirls" />
 
+    <TextView
+        android:id="@+id/textTempoPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/uber_move_medium"
+        android:text="15:20 - 3 min de distância"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/imgRetangulo"
+        app:layout_constraintStart_toStartOf="@+id/imgRetangulo"
+        app:layout_constraintTop_toBottomOf="@+id/textUberGirls" />
+
     <ImageView
         android:id="@+id/imgUberX"
         android:layout_width="76dp"
         android:layout_height="44.88dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,13 +124,25 @@
         android:id="@+id/textUberX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="UberX"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imgUberX"
         app:layout_constraintTop_toBottomOf="@+id/imgRetangulo" />
+
+    <TextView
+        android:id="@+id/textTempoSec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/uber_move_medium"
+        android:text="15:20 - 3 min de distância"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/imgUberX"
+        app:layout_constraintTop_toBottomOf="@+id/textUberX" />
 
     <ImageView
         android:id="@+id/imgComfort"
@@ -132,7 +159,7 @@
         android:id="@+id/textComfort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="45dp"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/uber_move_bold"
         android:text="Uber Comfort"
@@ -140,6 +167,18 @@
         app:layout_constraintStart_toEndOf="@+id/imgComfort"
         app:layout_constraintTop_toBottomOf="@+id/textUberX"
         app:layout_constraintVertical_bias="0.78" />
+
+    <TextView
+        android:id="@+id/textTempoTer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/uber_move_medium"
+        android:text="15:20 - 3 min de distância"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/imgComfort"
+        app:layout_constraintTop_toBottomOf="@+id/textComfort" />
 
     <ImageView
         android:id="@+id/imgPix"
