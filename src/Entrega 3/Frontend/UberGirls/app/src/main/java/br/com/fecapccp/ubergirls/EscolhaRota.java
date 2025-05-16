@@ -1,5 +1,6 @@
 package br.com.fecapccp.ubergirls;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.graphics.Color;
@@ -45,6 +46,8 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
     private CardView cardMelhorRota;
     private TextView textHome; // TextView para mostrar endereço de origem
     private ImageView btnVoltar;
+
+    private TextView textPesquisa;
     private TextView textTempoMelhor;
     private TextView textKmMelhor;
     private TextView textRotaMelhor;
@@ -73,6 +76,7 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
 
         // Inicializar elementos da UI
         btnConfirmarPartida = findViewById(R.id.btnConfirmarPartida);
+        textPesquisa = findViewById(R.id.textPesquisa);
         cardMelhorRota = findViewById(R.id.cardMelhorRota);
         textHome = findViewById(R.id.textHome);
         btnVoltar = findViewById(R.id.btnVoltar);
@@ -97,6 +101,8 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
         // Configurar listeners para os elementos da UI
         configurarListeners();
     }
+
+
 
     private void obterDadosRotaSelecionada() {
         Bundle extras = getIntent().getExtras();
@@ -173,6 +179,11 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
             // Aqui você poderia iniciar a próxima Activity
             // Intent intent = new Intent(EscolhaRota.this, ProximaActivity.class);
             // startActivity(intent);
+        });
+
+        textPesquisa.setOnClickListener(v -> {
+            Intent voltarIntent = new Intent(EscolhaRota.this, PesquisaActivity.class);
+            startActivity(voltarIntent);
         });
 
         // Listener para o card da melhor rota

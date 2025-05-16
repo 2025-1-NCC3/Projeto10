@@ -60,6 +60,8 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
     private ImageView btnVoltar;
     private TextView textEnderecoOrigem;
 
+    private TextView txtPesquisar;
+
     private Marker origemMarker;
     private Marker destinoMarker;
 
@@ -122,6 +124,7 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
         btnConfirmarPartida = findViewById(R.id.btnConfirmarPartida);
         btnVoltar = findViewById(R.id.btnVoltar);
         textEnderecoOrigem = findViewById(R.id.textEnderecoOrigem);
+        txtPesquisar =  findViewById(R.id.txtPesquisar);
 
         txtTempoRota1 = findViewById(R.id.txtTempoRota1);
         txtDistanciaRota1 = findViewById(R.id.txtDistanciaRota1);
@@ -293,6 +296,11 @@ public class activity_selecao_rota extends AppCompatActivity implements OnMapRea
 
         btnVoltar.setOnClickListener(v -> {
             finish(); // Volta para a activity anterior
+        });
+
+        txtPesquisar.setOnClickListener(v -> {
+            Intent voltarIntent = new Intent(activity_selecao_rota.this, PesquisaActivity.class);
+            startActivity(voltarIntent);
         });
     }
 

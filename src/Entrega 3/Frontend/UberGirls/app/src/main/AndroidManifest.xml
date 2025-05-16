@@ -27,7 +27,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".PesquisaActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,24 +36,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EscolhaRota"
-            android:exported="false" />
-        <activity
             android:name=".CadastroActivity"
             android:exported="false" />
         <activity
             android:name=".TelaHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".UberGirlsActivity"
-            android:exported="false"
-            tools:ignore="MissingClass" />
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
-            android:name=".PesquisaActivity"
+            android:name=".UberGirlsActivity"
             android:exported="false" />
         <activity
             android:name=".activity_selecao_rota"
             android:exported="false" />
+        <activity
+            android:name=".EscolhaRota"
+            android:exported="false"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".ItemLocalActivity"
             android:exported="false" />
