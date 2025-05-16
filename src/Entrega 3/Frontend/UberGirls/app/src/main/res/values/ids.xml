@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editOrigem" type="id" />
+    <item name="editDestino" type="id" />
+    <item name="btnConcluido" type="id" />
+</resources>

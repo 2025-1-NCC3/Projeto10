@@ -10,6 +10,16 @@
     tools:context=".activity_selecao_rota">
 
     <!-- Google Map Fragment -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomSheet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/btnVoltar"
@@ -108,11 +118,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota1" />
 
-                    <fragment
-                        android:id="@+id/map"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -185,29 +190,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota2" />
 
-                    <ImageView
-                        android:id="@+id/imgAvisoRota2"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_warning"
-                        android:contentDescription="Aviso de perigo"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtInfoRota2"
-                        app:tint="#FFC107" />
-
-                    <TextView
-                        android:id="@+id/txtAvisoRota2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Perigo"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgAvisoRota2"
-                        app:layout_constraintStart_toEndOf="@+id/imgAvisoRota2"
-                        app:layout_constraintTop_toTopOf="@+id/imgAvisoRota2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -280,54 +262,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota3" />
 
-                    <ImageView
-                        android:id="@+id/imgPolicia"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_police"
-                        android:contentDescription="Presença policial"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtInfoRota3"
-                        app:tint="#03A9F4" />
-
-                    <TextView
-                        android:id="@+id/txtPolicia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="2 polícia"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgPolicia"
-                        app:layout_constraintStart_toEndOf="@+id/imgPolicia"
-                        app:layout_constraintTop_toTopOf="@+id/imgPolicia" />
-
-                    <ImageView
-                        android:id="@+id/imgAvisoRota3"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginStart="24dp"
-                        android:src="@drawable/ic_warning"
-                        android:contentDescription="Aviso de perigo"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgPolicia"
-                        app:layout_constraintStart_toEndOf="@+id/txtPolicia"
-                        app:layout_constraintTop_toTopOf="@+id/imgPolicia"
-                        app:tint="#FFC107" />
-
-                    <TextView
-                        android:id="@+id/txtAvisoRota3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Perigo"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgAvisoRota3"
-                        app:layout_constraintStart_toEndOf="@+id/imgAvisoRota3"
-                        app:layout_constraintTop_toTopOf="@+id/imgAvisoRota3" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -357,16 +291,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
+            <!-- TextView adicionado para o endereço de origem -->
             <TextView
-                android:id="@+id/txtHome"
-                android:layout_width="wrap_content"
+                android:id="@+id/textEnderecoOrigem"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif"
                 android:text="home"
                 android:textColor="#000000"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/txtPesquisar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
@@ -379,9 +316,9 @@
                 android:text="Pesquisar"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/txtHome"
+                app:layout_constraintBottom_toBottomOf="@+id/textEnderecoOrigem"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txtHome" />
+                app:layout_constraintTop_toTopOf="@+id/textEnderecoOrigem" />
 
             <Button
                 android:id="@+id/btnConfirmarPartida"
@@ -389,15 +326,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/btn_black_rounded"
                 android:fontFamily="sans-serif-medium"
                 android:text="Confirmar partida"
                 android:textAllCaps="false"
+                android:backgroundTint="#000000"
+                app:cornerRadius="8dp"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHome" />
+                app:layout_constraintTop_toBottomOf="@+id/textEnderecoOrigem" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -456,4 +394,6 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -111,7 +111,7 @@ public class PesquisaActivity extends AppCompatActivity {
             }
         });
 
-        // Apenas o botão concluído fará a navegação para a próxima tela
+        // Modificado: Agora o botão Concluído navega diretamente para UberGirlsActivity
         btnConcluido.setOnClickListener(view -> {
             String origem = editOrigem.getText().toString();
             String destino = editDestino.getText().toString();
@@ -137,7 +137,7 @@ public class PesquisaActivity extends AppCompatActivity {
                 }
             }
 
-            // Enviar para UberGirlsActivity com os parâmetros de origem e destino
+            // Enviar diretamente para UberGirlsActivity com os parâmetros de origem e destino
             Intent intent = new Intent(PesquisaActivity.this, UberGirlsActivity.class);
             intent.putExtra("origem", origem);
             intent.putExtra("destino", destino);

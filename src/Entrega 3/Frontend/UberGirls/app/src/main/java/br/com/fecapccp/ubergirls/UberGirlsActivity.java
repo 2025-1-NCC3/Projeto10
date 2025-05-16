@@ -162,7 +162,14 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         atualizarBotao();
 
         btnEscolha.setOnClickListener(v -> {
-            Intent escolhaIntent = new Intent(UberGirlsActivity.this, EscolhaRota.class);
+
+            Intent escolhaIntent = new Intent(UberGirlsActivity.this, activity_selecao_rota.class);
+
+            // Passar endereços de origem e destino
+            escolhaIntent.putExtra("origem", enderecoOrigem);
+            escolhaIntent.putExtra("destino", enderecoDestino);
+
+            // Inicia a activity de seleção de rota
             startActivity(escolhaIntent);
         });
 

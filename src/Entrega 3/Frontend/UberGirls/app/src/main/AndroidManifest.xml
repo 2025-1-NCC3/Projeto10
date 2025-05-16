@@ -27,7 +27,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".PesquisaActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +49,10 @@
             android:exported="false"
             tools:ignore="MissingClass" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".PesquisaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_selecao_rota"
             android:exported="false" />
         <activity
             android:name=".ItemLocalActivity"
