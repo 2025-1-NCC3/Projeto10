@@ -38,30 +38,30 @@ public class PesquisaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pesquisa_main);
 
-        // Inicializa o Places API (com sua chave)
+        // Inicializa a API
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(),
                     "AIzaSyD6OQbHAg8n3-qHusRR-KCv6Ii1CiYhjVI");
         }
 
-        // Referências
+
         editOrigem    = findViewById(R.id.editOrigem);
         editDestino   = findViewById(R.id.editDestino);
         btnVoltar     = findViewById(R.id.btnVoltar);
         btnSeta       = findViewById(R.id.btnSeta);
         btnConcluido  = findViewById(R.id.btnConcluido);
 
-        // Navega para TelaHomeActivity
+
         btnVoltar.setOnClickListener(view -> {
             Intent intent = new Intent(PesquisaActivity.this, TelaHomeActivity.class);
             startActivity(intent);
         });
 
-        // Clique no campo de origem (abre o autocomplete)
-        editOrigem.setFocusable(false); // Impede que o teclado abra automaticamente
+
+        editOrigem.setFocusable(false);
         editOrigem.setOnClickListener(view -> {
             try {
-                // Define os campos que queremos recuperar
+
                 List<Place.Field> campos = Arrays.asList(
                         Place.Field.ID,
                         Place.Field.NAME,
@@ -72,7 +72,7 @@ public class PesquisaActivity extends AppCompatActivity {
                 // Cria a intent do autocomplete
                 Intent intent = new Autocomplete.IntentBuilder(
                         AutocompleteActivityMode.FULLSCREEN, campos)
-                        .setCountries(Arrays.asList("BR")) // Define o país como Brasil
+                        .setCountries(Arrays.asList("BR"))
                         .build(PesquisaActivity.this);
 
                 startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE_ORIGEM);
@@ -84,11 +84,11 @@ public class PesquisaActivity extends AppCompatActivity {
             }
         });
 
-        // Clique no campo de destino (abre o autocomplete)
-        editDestino.setFocusable(false); // Impede que o teclado abra automaticamente
+
+        editDestino.setFocusable(false);
         editDestino.setOnClickListener(view -> {
             try {
-                // Define os campos que queremos recuperar
+
                 List<Place.Field> campos = Arrays.asList(
                         Place.Field.ID,
                         Place.Field.NAME,
@@ -96,7 +96,7 @@ public class PesquisaActivity extends AppCompatActivity {
                         Place.Field.LAT_LNG
                 );
 
-                // Cria a intent do autocomplete
+
                 Intent intent = new Autocomplete.IntentBuilder(
                         AutocompleteActivityMode.FULLSCREEN, campos)
                         .setCountries(Arrays.asList("BR")) // Define o país como Brasil
@@ -111,12 +111,12 @@ public class PesquisaActivity extends AppCompatActivity {
             }
         });
 
-        // Modificado: Agora o botão Concluído navega diretamente para UberGirlsActivity
+
         btnConcluido.setOnClickListener(view -> {
             String origem = editOrigem.getText().toString();
             String destino = editDestino.getText().toString();
 
-            // Verifica se temos origem
+
             if (origem.isEmpty()) {
                 if (enderecoOrigemSelecionado == null) {
                     Toast.makeText(PesquisaActivity.this, "Informe o local de origem", Toast.LENGTH_SHORT).show();
@@ -126,7 +126,6 @@ public class PesquisaActivity extends AppCompatActivity {
                 }
             }
 
-            // Verifica se temos destino
             if (destino.isEmpty()) {
                 if (enderecoDestinoSelecionado == null) {
                     Toast.makeText(PesquisaActivity.this, "Selecione um endereço de destino",

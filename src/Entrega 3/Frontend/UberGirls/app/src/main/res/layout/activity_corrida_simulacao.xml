@@ -7,19 +7,19 @@
     android:background="#F8F8F8"
     tools:context=".CorridaSimulacaoActivity">
 
-    <!-- Mapa de fundo (placeholder) -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E8E8E8" />
 
-    <!-- Container para o carro -->
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="150dp">
 
-        <!-- Imagem do carro rosa -->
+
         <ImageView
             android:id="@+id/imagemCarro"
             android:layout_width="80dp"
@@ -29,7 +29,7 @@
             android:contentDescription="Carro rosa" />
     </FrameLayout>
 
-    <!-- Painel inferior com status da corrida -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,18 +39,19 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Texto de status que alternará conforme o fluxo -->
+
         <TextView
+            android:fontFamily="@font/uber_move_medium"
             android:id="@+id/textoStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Buscando Motorista"
-            android:textColor="#FF4081"
+            android:textColor="#175bcc"
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <!-- Animação de progresso -->
+
         <ProgressBar
             android:id="@+id/progressoViagem"
             style="?android:attr/progressBarStyleHorizontal"
@@ -58,9 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:indeterminate="true"
-            android:indeterminateTint="#FF4081" />
+            android:indeterminateTint="#175bcc" />
 
-        <!-- Informações adicionais sobre a viagem -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,6 +70,7 @@
 
             <TextView
                 android:id="@+id/textoMotorista"
+                android:fontFamily="@font/uber_move_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Motorista: Ana Silva"
@@ -80,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Carro: Fiat Mobi - Rosa - ABC1234"
                 android:textSize="14sp" />
 
@@ -87,6 +90,7 @@
                 android:id="@+id/textoTempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/uber_move_medium"
                 android:layout_marginTop="4dp"
                 android:text="Tempo estimado: 12 min"
                 android:textSize="14sp" />

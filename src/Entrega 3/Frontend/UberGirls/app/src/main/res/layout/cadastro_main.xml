@@ -167,7 +167,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Spinner oculto usado apenas para gerenciar a seleção -->
 
     <Spinner
         android:id="@+id/spinnerSexo"

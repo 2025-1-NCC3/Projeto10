@@ -150,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/uber_move_medium"
         android:text="home"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -190,7 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Indicadores de Rota na Parte Superior -->
+
     <LinearLayout
         android:id="@+id/layoutRotas"
         android:layout_width="wrap_content"

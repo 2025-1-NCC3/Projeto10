@@ -59,14 +59,14 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     private Button btnEscolha;
     private ImageView btnVoltar;
 
-    // referências dos TextView de horário
+
     private TextView textTempoPrincipal;
     private TextView textTempoSec;
     private TextView textTempoTer;
 
     private String opcaoSelecionada = "UberGirls";
 
-    // Armazenar os endereços de origem e destino
+
     private String enderecoOrigem;
     private String enderecoDestino;
     private LatLng pontoOrigem;
@@ -77,13 +77,13 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
-    // Chave da API do Google (use a mesma que está na PesquisaActivity)
+    // Chave da API do Google
     private static final String API_KEY = "AIzaSyD6OQbHAg8n3-qHusRR-KCv61iICiYhjVI";
 
-    // Zoom inicial para o ponto de origem
+
     private static final float ZOOM_ORIGEM = 16f; // Aumentado para proporcionar um zoom mais próximo
 
-    // atualiza horário a cada minuto
+
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable atualizarHorarioRunnable = new Runnable() {
         @Override
@@ -105,7 +105,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             return insets;
         });
 
-        // Obtém os dados de origem e destino da intent
+
         Intent intent = getIntent();
         if (intent != null) {
             enderecoOrigem = intent.getStringExtra("origem");
@@ -144,7 +144,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         textUberX = findViewById(R.id.textUberX);
         textComfort = findViewById(R.id.textComfort);
 
-        // encontra os TextView de horário
+
         textTempoPrincipal = findViewById(R.id.textTempoPrincipal);
         textTempoSec = findViewById(R.id.textTempoSec);
         textTempoTer = findViewById(R.id.textTempoTer);
@@ -152,7 +152,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         btnEscolha = findViewById(R.id.btnEscolha);
         btnVoltar = findViewById(R.id.btnVoltar);
 
-        // Configurar listeners
+
         imgUberX.setOnClickListener(v -> trocarComPrincipal(imgUberX, textUberX));
         textUberX.setOnClickListener(v -> trocarComPrincipal(imgUberX, textUberX));
 
@@ -165,11 +165,11 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
             Intent escolhaIntent = new Intent(UberGirlsActivity.this, activity_selecao_rota.class);
 
-            // Passar endereços de origem e destino
+
             escolhaIntent.putExtra("origem", enderecoOrigem);
             escolhaIntent.putExtra("destino", enderecoDestino);
 
-            // Inicia a activity de seleção de rota
+
             startActivity(escolhaIntent);
         });
 
@@ -197,12 +197,12 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
         Log.d("MAP_DEBUG", "Mapa carregado com sucesso!");
 
-        // Configurações do mapa
+
         mMap.setTrafficEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(false);
 
-        // Definir estilo de mapa otimizado para navegação
+
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -211,7 +211,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
         } else {
-            // Converter os endereços em coordenadas e traçar a rota
+
             geocodeEnderecos();
         }
     }
@@ -220,7 +220,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
         try {
-            // Geocodificação do endereço de origem com retrocompatibilidade para diferentes versões do Android
+
             geocodificarEndereco(geocoder, enderecoOrigem, true);
         } catch (IOException e) {
             Log.e("MAP_DEBUG", "Erro ao geocodificar endereços: " + e.getMessage());
@@ -229,7 +229,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void geocodificarEndereco(Geocoder geocoder, String endereco, boolean isOrigem) throws IOException {
-        // Método que lida com a geocodificação de forma mais robusta
+
         List<Address> enderecos = geocoder.getFromLocationName(endereco, 1);
 
         if (enderecos != null && !enderecos.isEmpty()) {
@@ -240,10 +240,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 pontoOrigem = ponto;
                 Log.d("GEOCODE_DEBUG", "Origem geocodificada: " + pontoOrigem.latitude + "," + pontoOrigem.longitude);
 
-                // Focar imediatamente no ponto de origem com zoom adequado
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pontoOrigem, ZOOM_ORIGEM));
 
-                // Continuar com o destino
+
                 try {
                     geocodificarEndereco(geocoder, enderecoDestino, false);
                 } catch (IOException e) {
@@ -254,10 +254,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 pontoDestino = ponto;
                 Log.d("GEOCODE_DEBUG", "Destino geocodificado: " + pontoDestino.latitude + "," + pontoDestino.longitude);
 
-                // Agora temos as coordenadas de origem e destino, traçar a rota
+
                 tracarRota();
 
-                // Ativamos a localização após geocodificar para não interferir com o foco no ponto de origem
+
                 ativarLocalizacao();
             }
         } else {
@@ -265,7 +265,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             Toast.makeText(this, "Não foi possível encontrar o endereço de " + tipo, Toast.LENGTH_SHORT).show();
 
             if (isOrigem) {
-                // Se não conseguimos o ponto de origem, tentamos usar a localização atual
+
                 obterLocalizacaoAtualComoOrigem();
             }
         }
@@ -283,10 +283,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 Log.d("GEOCODE_DEBUG", "Usando localização atual como origem: " +
                         pontoOrigem.latitude + "," + pontoOrigem.longitude);
 
-                // Focar na localização atual
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pontoOrigem, ZOOM_ORIGEM));
 
-                // Continuar com a geocodificação do destino
+
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                 try {
                     geocodificarEndereco(geocoder, enderecoDestino, false);
@@ -306,11 +306,11 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             return;
         }
 
-        // Remover marcadores anteriores se existirem
+
         if (marcadorOrigem != null) marcadorOrigem.remove();
         if (marcadorDestino != null) marcadorDestino.remove();
 
-        // Adicionar marcadores para a origem e destino com estilos diferentes
+
         marcadorOrigem = mMap.addMarker(new MarkerOptions()
                 .position(pontoOrigem)
                 .title("Origem: " + enderecoOrigem)
@@ -321,10 +321,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 .title("Destino: " + enderecoDestino)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-        // IMPORTANTE: Garantir que o mapa esteja focado na origem primeiro
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pontoOrigem, ZOOM_ORIGEM));
 
-        // Criar contexto para a API Directions com configurações otimizadas
+
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey(API_KEY)
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -339,10 +339,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             com.google.maps.model.LatLng destino = new com.google.maps.model.LatLng(
                     pontoDestino.latitude, pontoDestino.longitude);
 
-            // Log para depuração
+
             Log.d("DIRECTIONS_DEBUG", "Solicitando rota de " + origem + " para " + destino);
 
-            // Solicitar rota otimizada para veículos
+
             DirectionsResult resultado = DirectionsApi.newRequest(context)
                     .mode(TravelMode.DRIVING)  // Modo veicular
                     .origin(origem)
@@ -350,7 +350,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                     .optimizeWaypoints(true)   // Otimizar waypoints
                     .await();
 
-            // Processar o resultado
+
             processarResultadoDirecoes(resultado);
 
         } catch (Exception e) {
@@ -371,7 +371,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
                 Log.d("DIRECTIONS_DEBUG", "Rota encontrada com sucesso!");
 
-                // Calcular distância e tempo estimado
+
                 long duracaoSegundos = 0;
                 float distanciaMetros = 0;
 
@@ -382,16 +382,16 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                     Log.d("DIRECTIONS_DEBUG", "Duração: " + duracaoSegundos + "s, Distância: " + distanciaMetros + "m");
                 }
 
-                // Atualizar informações de tempo e distância
+
                 atualizarInfoRota(duracaoSegundos, distanciaMetros);
 
-                // Desenhar a rota no mapa
+
                 List<LatLng> pontos = PolyUtil.decode(rota.overviewPolyline.getEncodedPath());
 
-                // Remover qualquer linha de rota existente e manter os marcadores
+
                 mMap.clear();
 
-                // Re-adicionar os marcadores após limpar o mapa
+
                 marcadorOrigem = mMap.addMarker(new MarkerOptions()
                         .position(pontoOrigem)
                         .title("Origem: " + enderecoOrigem)
@@ -402,7 +402,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                         .title("Destino: " + enderecoDestino)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-                // Adicionar a linha da rota com estilo otimizado para visualização
+
                 PolylineOptions linhaDaRota = new PolylineOptions()
                         .addAll(pontos)
                         .width(12)  // Linha um pouco mais grossa
@@ -411,27 +411,27 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
                 mMap.addPolyline(linhaDaRota);
 
-                // FOCO INICIAL: Garantir que começamos focados no ponto de origem com zoom apropriado
+
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pontoOrigem, ZOOM_ORIGEM));
 
-                // Após um delay, oferecemos opção de ver a rota completa
+
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    // Ajustar a câmera para exibir toda a rota com padding
+
                     if (pontos.size() > 1) {
                         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-                        // Incluir todos os pontos da rota para um melhor enquadramento
+
                         for (LatLng ponto : pontos) {
                             builder.include(ponto);
                         }
 
                         LatLngBounds limites = builder.build();
-                        int padding = 200; // padding em pixels
+                        int padding = 200;
 
-                        // Animação suave para mostrar toda a rota
+
                         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(limites, padding));
                     }
-                }, 3000); // 3 segundos de delay para dar tempo de visualizar o ponto de partida
+                }, 3000);
             } else {
                 Log.e("DIRECTIONS_DEBUG", "Nenhuma rota encontrada no resultado");
                 mostrarRotaAlternativa();
@@ -440,10 +440,10 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void mostrarRotaAlternativa() {
-        // Método alternativo simples caso a API falhe
-        mMap.clear(); // Limpa o mapa
 
-        // Re-adiciona os marcadores
+        mMap.clear();
+
+
         marcadorOrigem = mMap.addMarker(new MarkerOptions()
                 .position(pontoOrigem)
                 .title("Origem: " + enderecoOrigem)
@@ -454,7 +454,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 .title("Destino: " + enderecoDestino)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-        // Adiciona uma linha direta entre os pontos
+
         PolylineOptions linhaDireta = new PolylineOptions()
                 .add(pontoOrigem)
                 .add(pontoDestino)
@@ -464,15 +464,15 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
         mMap.addPolyline(linhaDireta);
 
-        // MODIFICAÇÃO: Primeiro foca no ponto de origem com zoom adequado
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pontoOrigem, ZOOM_ORIGEM));
 
-        // Estimar tempo e distância em linha reta
+
         estimarInfoRotaSimples();
 
-        // Após um delay maior para garantir que o usuário veja bem o ponto de partida
+
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            // Ajustar a câmera para exibir toda a rota com padding maior
+
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             builder.include(pontoOrigem);
             builder.include(pontoDestino);
@@ -483,7 +483,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void estimarInfoRotaSimples() {
-        // Calcula a distância em linha reta
+
         float[] results = new float[1];
         Location.distanceBetween(
                 pontoOrigem.latitude, pontoOrigem.longitude,
@@ -492,27 +492,26 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
 
         float distanciaMetros = results[0];
 
-        // Estima tempo considerando velocidade média de 30 km/h (mais realista em ambiente urbano)
-        // e adiciona um fator de 1.3x para compensar pela não-linearidade das vias
+
         float distanciaAjustada = distanciaMetros * 1.3f;
         long duracaoSegundos = (long) (distanciaAjustada / (30 * 1000 / 3600));
 
-        // Atualiza as informações na interface
+
         atualizarInfoRota(duracaoSegundos, distanciaAjustada);
     }
 
     private void atualizarInfoRota(long duracaoSegundos, float distanciaMetros) {
-        // Converter duração para minutos
+
         int minutos = (int) (duracaoSegundos / 60);
 
-        // Converter distância para quilômetros
+
         float kmDistancia = distanciaMetros / 1000;
 
-        // Formatar para exibição
+
         String duracao = minutos + " min";
         String distancia = String.format(Locale.getDefault(), "%.1f km", kmDistancia);
 
-        // Atualizar os TextViews de tempo
+
         String infoCompleta = duracao + " - " + distancia + " de distância";
         textTempoPrincipal.setText(infoCompleta);
         textTempoSec.setText(infoCompleta);
@@ -526,8 +525,7 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-            // Não vamos focar na localização atual do usuário, já que queremos
-            // priorizar o ponto de origem da rota
+
         }
     }
 
@@ -539,14 +537,14 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             ativarLocalizacao();
 
-            // Se não temos pontos de origem ainda, podemos tentar usar a localização atual
+
             if (pontoOrigem == null) {
                 obterLocalizacaoAtualComoOrigem();
             }
         } else {
             Log.e("MAP_DEBUG", "Permissão de localização negada.");
 
-            // Mesmo sem permissão, tentamos geocodificar os endereços
+
             geocodeEnderecos();
         }
     }
@@ -587,13 +585,13 @@ public class UberGirlsActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    // formata e atualiza o horário nos três TextView
+
     private void atualizarHorarios() {
         String hora = new SimpleDateFormat("HH:mm", Locale.getDefault())
                 .format(new Date());
         String sufixo = " - tempo estimado";
 
-        // Só atualiza se não tivermos informações da rota real
+
         if (pontoOrigem == null || pontoDestino == null) {
             textTempoPrincipal.setText(hora + sufixo);
             textTempoSec.setText(hora + sufixo);

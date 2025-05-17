@@ -28,7 +28,7 @@ public class ItemLocalActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_local);
 
-        // Recupera o endereço enviado pela tela anterior
+
         endereco = getIntent().getStringExtra("endereco");
 
         // Inicializa o mapa

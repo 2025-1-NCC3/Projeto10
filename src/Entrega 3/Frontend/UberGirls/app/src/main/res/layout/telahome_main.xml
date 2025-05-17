@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Viagens"
+            android:fontFamily="@font/uber_move_medium"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Envios"
+            android:fontFamily="@font/uber_move_medium"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -68,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:fontFamily="@font/uber_move_medium"
             android:text="Para onde?"
             android:textColor="#999999"
             android:textSize="16sp" />
@@ -76,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mais tarde"
+            android:fontFamily="@font/uber_move_medium"
             android:textColor="#000000"
             android:textSize="14sp" />
     </LinearLayout>
@@ -97,6 +101,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingVertical="8dp"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.31"
@@ -118,12 +123,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FECAP"
+                android:fontFamily="@font/uber_move_medium"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Av. Da Liberdade, 532, Liberdade, São Paulo - SP, 01502-001"
                 android:textColor="#666666"
                 android:textSize="13sp"
@@ -158,12 +165,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FECAP"
+                android:fontFamily="@font/uber_move_medium"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Av. Da Liberdade, 532, Liberdade, São Paulo - SP, 01502-001"
                 android:textColor="#666666"
                 android:textSize="13sp"
@@ -177,6 +186,7 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
         android:orientation="horizontal"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -197,6 +207,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:text="Sugestões"
+            android:fontFamily="@font/uber_move_medium"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -206,6 +217,7 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="end"
             android:text="Ver Tudo"
+            android:fontFamily="@font/uber_move_medium"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -216,7 +228,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Viagem -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -232,10 +243,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Viagem"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Envios -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -251,10 +263,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Envios"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Agende -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -270,10 +283,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Agende"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Reserve -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -288,6 +302,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/uber_move_medium"
                     android:text="Reserve"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -298,6 +313,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/uber_move_medium"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/topTabs"

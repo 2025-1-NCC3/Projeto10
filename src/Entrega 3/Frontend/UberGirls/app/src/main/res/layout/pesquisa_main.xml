@@ -15,10 +15,12 @@
         android:padding="16dp">
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+
             android:orientation="horizontal">
 
             <ImageView
@@ -32,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Planeje sua próxima viagem"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -62,6 +65,7 @@
 
                 <TextView
                     android:textStyle="bold"
+                    android:fontFamily="@font/uber_move_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ir agora"
@@ -92,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Para Mim"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textColor="#000000"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -137,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="FECAP"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textColorHint="#666666"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
@@ -148,6 +154,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Para onde?"
+                    android:fontFamily="@font/uber_move_medium"
                     android:textColorHint="#666666"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
@@ -179,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="Locais Salvos"
                 android:textColor="#333333"
+                android:fontFamily="@font/uber_move_medium"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
