@@ -177,8 +177,8 @@ public class EscolhaRota extends AppCompatActivity implements OnMapReadyCallback
         btnConfirmarPartida.setOnClickListener(v -> {
             Toast.makeText(EscolhaRota.this, "Partida confirmada!", Toast.LENGTH_SHORT).show();
             // Aqui você poderia iniciar a próxima Activity
-            // Intent intent = new Intent(EscolhaRota.this, ProximaActivity.class);
-            // startActivity(intent);
+             Intent intent = new Intent(EscolhaRota.this, CorridaSimulacaoActivity.class);
+             startActivity(intent);
         });
 
         textPesquisa.setOnClickListener(v -> {

@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UberGirls"
         tools:targetApi="31">
-
+        <activity
+            android:name=".CorridaSimulacaoActivity"
+            android:exported="false" />
         <!-- API do Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -27,7 +29,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".PesquisaActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +44,7 @@
             android:name=".TelaHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".PesquisaActivity"
             android:exported="false" />
         <activity
             android:name=".UberGirlsActivity"

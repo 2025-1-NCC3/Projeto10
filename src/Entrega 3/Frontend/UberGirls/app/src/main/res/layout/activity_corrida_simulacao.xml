@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    tools:context=".CorridaSimulacaoActivity">
+
+    <!-- Mapa de fundo (placeholder) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E8E8E8" />
+
+    <!-- Container para o carro -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="150dp">
+
+        <!-- Imagem do carro rosa -->
+        <ImageView
+            android:id="@+id/imagemCarro"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/carro_girls"
+            android:contentDescription="Carro rosa" />
+    </FrameLayout>
+
+    <!-- Painel inferior com status da corrida -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Texto de status que alternará conforme o fluxo -->
+        <TextView
+            android:id="@+id/textoStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Buscando Motorista"
+            android:textColor="#FF4081"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Animação de progresso -->
+        <ProgressBar
+            android:id="@+id/progressoViagem"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#FF4081" />
+
+        <!-- Informações adicionais sobre a viagem -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textoMotorista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Motorista: Ana Silva"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textoCarro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Carro: Fiat Mobi - Rosa - ABC1234"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textoTempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tempo estimado: 12 min"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
