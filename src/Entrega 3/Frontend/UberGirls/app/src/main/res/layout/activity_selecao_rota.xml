@@ -303,7 +303,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnConfirmarPartida"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitulo"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
