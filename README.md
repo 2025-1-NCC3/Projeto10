@@ -9,7 +9,7 @@
 # 🚘 Uber Girls - Segurança com sua melhor escolha de corrida.
 
 
-## Integrantes: [Flavia da Costa Rodrigues Faria](https://www.linkedin.com/in/flaviacostafaria), [Guilherme Muniz Gomes](https://www.linkedin.com/in/guimuniiz/), [Lucas Moreira de Godoy](https://www.linkedin.com/in/lucas-moreira-289671264/), [Maria Eduarda Foloni Cabral](https://www.linkedin.com/in/maria-eduarda-c-foloni/)
+## Integrantes: [Flavia da Costa Rodrigues Faria](https://www.linkedin.com/in/flaviacostafaria), [Guilherme Muniz Gomes](https://www.linkedin.com/in/guimuniiz/), [Lucas Moreira de Godoy](https://www.linkedin.com/in/lucas-moreira-289671264/), [Maria Eduarda Cabral Foloni](https://www.linkedin.com/in/maria-eduarda-c-foloni/)
 
 ## Professores Orientadores: [Katia Milani Lara Bossi](https://www.linkedin.com/in/katia-bossi/), [Marco Aurelio](https://github.com/fecaphub/Portfolio/blob/main), [Victor Rosetti](https://www.linkedin.com/in/victorbarq/) e [Vinicius Heltai](https://www.linkedin.com/in/vheltai/)
 
@@ -87,23 +87,13 @@ documentos: Toda a documentação estará nesta pasta.
 
 ## 🛠 Instalação
 
-<!-- <b>Android:</b>
+<b>Android:</b>
 
 Faça o download do `.apk` no seu celular.  
 Execute o APK e siga as instruções do seu telefone.
 
 ```sh
-👉 https://drive.google.com/file/d/1bkihqnxqIufaPpMa7MAgd4ur1ZwaNbFb/view?usp=sharing
-```
--->
-
-<b>Android:</b>
-
-Faça o Download do `.apk` no seu celular.
-Execute o APK e siga as instruções de seu telefone.
-
-```sh
-Em Breve
+👉 📂Projeto10\src\Entrega 3\Frontend\UberGirls\APK\Uber Girls.apk
 ```
 
 ---
