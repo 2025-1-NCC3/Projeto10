@@ -22,11 +22,11 @@
 
         <ImageView
             android:id="@+id/imagemCarro"
-            android:layout_width="80dp"
-            android:layout_height="120dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/carro_girls"
-            android:contentDescription="Carro rosa" />
+            android:contentDescription="Gif Carro"
+            android:src="@drawable/carro_animado" />
     </FrameLayout>
 
 
@@ -41,12 +41,12 @@
 
 
         <TextView
-            android:fontFamily="@font/uber_move_medium"
             android:id="@+id/textoStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Buscando Motorista"
+            android:fontFamily="@font/uber_move_medium"
             android:textColor="#175bcc"
             android:textSize="22sp"
             android:textStyle="bold" />

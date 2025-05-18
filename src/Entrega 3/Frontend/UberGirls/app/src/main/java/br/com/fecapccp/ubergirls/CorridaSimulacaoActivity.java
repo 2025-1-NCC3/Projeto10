@@ -15,12 +15,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 public class CorridaSimulacaoActivity extends AppCompatActivity {
-
 
     private ImageView imagemCarro;
     private TextView textoStatus;
@@ -76,14 +78,20 @@ public class CorridaSimulacaoActivity extends AppCompatActivity {
         textoStatus = findViewById(R.id.textoStatus);
         progressoViagem = findViewById(R.id.progressoViagem);
 
-
         textoMotorista = findViewById(R.id.textoMotorista);
         textoCarro = findViewById(R.id.textoCarro);
         textoTempo = findViewById(R.id.textoTempo);
 
-
         progressoViagem.setIndeterminate(true);
+
+        // Carregar GIF usando Glide
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.carro_animado)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imagemCarro);
     }
+
 
     private void obterDadosDaViagem() {
         Bundle extras = getIntent().getExtras();
@@ -104,8 +112,6 @@ public class CorridaSimulacaoActivity extends AppCompatActivity {
     }
 
     private void iniciarSimulacao() {
-
-        iniciarAnimacaoCarro();
 
 
         atualizarStatusViagem(0);
@@ -134,52 +140,6 @@ public class CorridaSimulacaoActivity extends AppCompatActivity {
         handler.postDelayed(() -> atualizarStatusViagem(4), DURACAO_TOTAL_VIAGEM);
     }
 
-    private void iniciarAnimacaoCarro() {
-
-        ObjectAnimator animX = ObjectAnimator.ofFloat(imagemCarro, "translationX", -10f, 10f);
-        animX.setDuration(300);
-        animX.setRepeatCount(ValueAnimator.INFINITE);
-        animX.setRepeatMode(ValueAnimator.REVERSE);
-        animX.setInterpolator(new AccelerateDecelerateInterpolator());
-
-
-        ObjectAnimator animY = ObjectAnimator.ofFloat(imagemCarro, "translationY", -5f, 5f);
-        animY.setDuration(500);
-        animY.setRepeatCount(ValueAnimator.INFINITE);
-        animY.setRepeatMode(ValueAnimator.REVERSE);
-
-
-        ObjectAnimator rotation = ObjectAnimator.ofFloat(imagemCarro, "rotation", -2f, 2f);
-        rotation.setDuration(800);
-        rotation.setRepeatCount(ValueAnimator.INFINITE);
-        rotation.setRepeatMode(ValueAnimator.REVERSE);
-
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animX, animY, rotation);
-        animatorSet.start();
-
-
-        adicionarAnimacaoSolavancos();
-    }
-
-    private void adicionarAnimacaoSolavancos() {
-
-        int delayAleatorio = 3000 + new Random().nextInt(5000);
-
-        handler.postDelayed(() -> {
-
-            ObjectAnimator solavanco = ObjectAnimator.ofFloat(
-                    imagemCarro, "translationY", 0f, -15f, 0f);
-            solavanco.setDuration(400);
-            solavanco.setInterpolator(new AccelerateDecelerateInterpolator());
-            solavanco.start();
-
-
-            adicionarAnimacaoSolavancos();
-
-        }, delayAleatorio);
-    }
 
     private void iniciarAnimacaoProgresso() {
 

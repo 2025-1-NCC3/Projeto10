@@ -37,7 +37,7 @@
     <View
         android:id="@+id/baseSheet"
         android:layout_width="0dp"
-        android:layout_height="320dp"
+        android:layout_height="250dp"
         android:background="@drawable/bg_top_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

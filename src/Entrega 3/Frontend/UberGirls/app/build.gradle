@@ -47,9 +47,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'com.google.maps.android:android-maps-utils:2.3.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
-
-
-
-
+// Glide para exibir GIFs animados
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 }
