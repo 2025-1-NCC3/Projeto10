@@ -1,7 +1,8 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const bodyParser = require("body-parser");
-const cors = require('cors');
+const cors = require("cors");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const port = 4000;
@@ -40,12 +41,9 @@ db.serialize(() => {
   );
 });
 
-// ROTA DE CADASTRO ATUALIZADA
-app.post("/user", (req, res) => {
+app.post("/user", async (req, res) => {
   const { nome, telefone, email, cpf, sexo, senha, aceita_motorista_mulher } =
     req.body;
-
-  console.log("Dados recebidos no POST /user:", req.body);
 
   if (sexo !== "feminino" && sexo !== "masculino") {
     return res
@@ -53,27 +51,72 @@ app.post("/user", (req, res) => {
       .json({ error: "Sexo inválido! Escolha 'feminino' ou 'masculino'." });
   }
 
-  db.run(
-    `INSERT INTO users (nome, telefone, email, cpf, sexo, senha, aceita_motorista_mulher) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [nome, telefone, email, cpf, sexo, senha, aceita_motorista_mulher ? 1 : 0],
-    function (err) {
-      if (err) {
-        console.error("❌ Erro ao cadastrar usuário:", err.message);
-        res.status(500).json({ error: "Erro ao cadastrar usuário." });
-      } else {
-        let telaDestino =
-          sexo === "feminino"
-            ? "tela_com_opcao_motorista_mulher"
-            : "tela_normal";
+  try {
+    const senhaHash = await bcrypt.hash(senha, 10);
+    console.log("Senha original:", senha);
+    console.log("Senha criptografada:", senhaHash);
 
-        res.json({
-          message: "✅ Usuário cadastrado com sucesso!",
-          id: this.lastID,
-          tela: telaDestino,
-        });
+    db.run(
+      `INSERT INTO users (nome, telefone, email, cpf, sexo, senha, aceita_motorista_mulher) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        nome,
+        telefone,
+        email,
+        cpf,
+        sexo,
+        senhaHash,
+        aceita_motorista_mulher ? 1 : 0,
+      ],
+
+      function (err) {
+        if (err) {
+          console.error("❌ Erro ao cadastrar usuário:", err.message);
+          res.status(500).json({ error: "Erro ao cadastrar usuário." });
+        } else {
+          let telaDestino =
+            sexo === "feminino"
+              ? "tela_com_opcao_motorista_mulher"
+              : "tela_normal";
+
+          res.json({
+            message: "✅ Usuário cadastrado com sucesso!",
+            id: this.lastID,
+            tela: telaDestino,
+          });
+        }
       }
+    );
+  } catch (error) {
+    console.error("❌ Erro ao criptografar senha:", error);
+    res.status(500).json({ error: "Erro ao processar a senha." });
+  }
+});
+
+app.post("/login", (req, res) => {
+  const { email, senha } = req.body;
+
+  db.get(`SELECT * FROM users WHERE email = ?`, [email], async (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro no servidor." });
     }
-  );
+
+    if (!user) {
+      return res.status(401).json({ error: "Usuário não encontrado." });
+    }
+
+    const senhaCorreta = await bcrypt.compare(senha, user.senha);
+    if (!senhaCorreta) {
+      return res.status(401).json({ error: "Senha incorreta." });
+    }
+
+    res.json({
+      message: "✅ Login realizado com sucesso!",
+      id: user.id,
+      nome: user.nome,
+      sexo: user.sexo,
+      aceita_motorista_mulher: user.aceita_motorista_mulher,
+    });
+  });
 });
 
 app.get("/users", (req, res) => {
@@ -153,19 +196,6 @@ app.get("/motoristas_disponiveis", (req, res) => {
   );
 });
 
-app.delete("/user/:id", (req, res) => {
-  const { id } = req.params;
-
-  db.run(`DELETE FROM users WHERE id = ?`, [id], function (err) {
-    if (err) {
-      console.error("❌ Erro ao excluir usuário:", err.message);
-      res.status(500).json({ error: "Erro ao excluir usuário." });
-    } else {
-      res.json({ message: "✅ Usuário deletado com sucesso!" });
-    }
-  });
-});
-
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Servidor rodando na porta ${port}`);
+app.listen(port, () => {
+  console.log(`🚀 Servidor rodando em http://localhost:${port}`);
 });
