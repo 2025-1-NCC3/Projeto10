@@ -93,7 +93,7 @@ Faça o download do `.apk` no seu celular.
 Execute o APK e siga as instruções do seu telefone.
 
 ```sh
-👉 📂Projeto10\src\Entrega 3\Frontend\UberGirls\APK\Uber Girls.apk
+👉 📂Projeto10\documentos\Entrega 3\PI - Aplicativo MóvelUber Girls.apk
 ```
 
 ---
