@@ -36,9 +36,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_selecao_rota"
-            android:exported="false" />
-        <activity
             android:name=".CadastroActivity"
             android:exported="false" />
         <activity
@@ -46,10 +43,19 @@
             android:exported="false" />
         <activity
             android:name=".PesquisaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UberGirlsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_selecao_rota"
+            android:exported="false" />
+        <activity
+            android:name=".EscolhaRota"
             android:exported="false"
             tools:ignore="MissingClass" />
         <activity
-            android:name=".UberGirlsActivity"
+            android:name=".CorridaSimulacaoActivity"
             android:exported="false" />
         <activity
             android:name=".ItemLocalActivity"

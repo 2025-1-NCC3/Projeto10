@@ -7,35 +7,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:paddingTop="20dp"
     tools:context=".activity_selecao_rota">
 
-    <!-- Google Map Fragment -->
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomSheet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/btnVoltar"
+        android:layout_width="51.5dp"
+        android:layout_height="49.05dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btnvoltar" />
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomSheet"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:background="@drawable/bg_top_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
+            android:layout_height="530dp"
+            android:paddingBottom="10dp">
 
 
             <androidx.cardview.widget.CardView
@@ -61,7 +71,7 @@
                         android:id="@+id/txtTempoRota1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="39 min"
                         android:textColor="#000000"
                         android:textSize="18sp"
@@ -85,7 +95,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Por Av. Pres. Wilson São Paulo"
                         android:textColor="#000000"
                         android:textSize="14sp"
@@ -98,13 +108,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Melhor rota, trânsito normal"
                         android:textColor="#6200EE"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota1" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -132,7 +143,7 @@
                         android:id="@+id/txtTempoRota2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="46 min"
                         android:textColor="#000000"
                         android:textSize="18sp"
@@ -144,7 +155,7 @@
                         android:id="@+id/txtDistanciaRota2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="13,9 km"
                         android:textColor="#757575"
                         android:textSize="14sp"
@@ -156,7 +167,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Por Av. do Estado São Paulo"
                         android:textColor="#000000"
                         android:textSize="14sp"
@@ -169,7 +180,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Trânsito normal"
                         android:textColor="#757575"
                         android:textSize="14sp"
@@ -177,29 +188,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota2" />
 
-                    <ImageView
-                        android:id="@+id/imgAvisoRota2"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_warning"
-                        android:contentDescription="Aviso de perigo"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtInfoRota2"
-                        app:tint="#FFC107" />
-
-                    <TextView
-                        android:id="@+id/txtAvisoRota2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Perigo"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgAvisoRota2"
-                        app:layout_constraintStart_toEndOf="@+id/imgAvisoRota2"
-                        app:layout_constraintTop_toTopOf="@+id/imgAvisoRota2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -227,7 +215,7 @@
                         android:id="@+id/txtTempoRota3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="55 min"
                         android:textColor="#000000"
                         android:textSize="18sp"
@@ -251,7 +239,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Por R. Vergueiro São Paulo"
                         android:textColor="#000000"
                         android:textSize="14sp"
@@ -264,7 +252,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/uber_move_medium"
                         android:text="Trânsito pior que o normal"
                         android:textColor="#757575"
                         android:textSize="14sp"
@@ -272,54 +260,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtViaRota3" />
 
-                    <ImageView
-                        android:id="@+id/imgPolicia"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_police"
-                        android:contentDescription="Presença policial"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtInfoRota3"
-                        app:tint="#03A9F4" />
-
-                    <TextView
-                        android:id="@+id/txtPolicia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="2 polícia"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgPolicia"
-                        app:layout_constraintStart_toEndOf="@+id/imgPolicia"
-                        app:layout_constraintTop_toTopOf="@+id/imgPolicia" />
-
-                    <ImageView
-                        android:id="@+id/imgAvisoRota3"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginStart="24dp"
-                        android:src="@drawable/ic_warning"
-                        android:contentDescription="Aviso de perigo"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgPolicia"
-                        app:layout_constraintStart_toEndOf="@+id/txtPolicia"
-                        app:layout_constraintTop_toTopOf="@+id/imgPolicia"
-                        app:tint="#FFC107" />
-
-                    <TextView
-                        android:id="@+id/txtAvisoRota3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Perigo"
-                        android:textColor="#757575"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/imgAvisoRota3"
-                        app:layout_constraintStart_toEndOf="@+id/imgAvisoRota3"
-                        app:layout_constraintTop_toTopOf="@+id/imgAvisoRota3" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -327,10 +267,11 @@
                 android:id="@+id/divider"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="68dp"
                 android:background="#E0E0E0"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardRota3" />
 
@@ -338,9 +279,9 @@
                 android:id="@+id/txtTitulo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
-                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Confirme o local de partida"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -349,47 +290,52 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
+
             <TextView
-                android:id="@+id/txtHome"
-                android:layout_width="wrap_content"
+                android:id="@+id/textEnderecoOrigem"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="home"
                 android:textColor="#000000"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/btnConfirmarPartida"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtPesquisar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/uber_move_medium"
                 android:text="Pesquisar"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/txtHome"
+                app:layout_constraintBottom_toBottomOf="@+id/textEnderecoOrigem"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txtHome" />
+                app:layout_constraintTop_toTopOf="@+id/textEnderecoOrigem" />
 
             <Button
                 android:id="@+id/btnConfirmarPartida"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_black_rounded"
-                android:fontFamily="sans-serif-medium"
-                android:text="Confirmar partida"
-                android:textAllCaps="false"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/uber_move_medium"
+                android:text="Confirmar Partida"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="25sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHome" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -411,7 +357,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_rota_indicator_selected"
             android:elevation="4dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/uber_move_medium"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:text="39 min\nMelhor"
@@ -426,7 +372,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_rota_indicator"
             android:elevation="4dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/uber_move_medium"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:text="46 min"
@@ -440,7 +386,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rota_indicator_danger"
             android:elevation="4dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/uber_move_medium"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:text="55 min"
@@ -448,4 +394,6 @@
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
